@@ -41,6 +41,7 @@ const side = 10;
 const grassArr = [];
 const grassEaterArr = [];
 const bombArr = [];
+const humanArr = [];
 
 function setup() {
     createCanvas(matrix[0].length * side, matrix.length * side);
@@ -56,6 +57,9 @@ function setup() {
             }
             if (matrix[i][j] == 3) {
                 bombArr.push(new Bomb(j, i, 1));
+            }
+            if (matrix[i][j] == 4) {
+                humanArr.push(new Human(j, i, 1));
             }
 
         }
@@ -77,6 +81,9 @@ function draw() {
             else if (matrix[y][x] == 4) {
                 fill("black")
             }
+            else if (matrix[y][x] == 5) {
+                fill("blue")
+            }
             else {
                 fill("gray");
             }
@@ -94,4 +101,13 @@ function draw() {
     for (let i = 0; i < bombArr.length; i++) {
         bombArr[i].explosion();
     }
+}
+
+
+function StopGame(){
+    frameRate(0);
+}
+
+function Start(){
+    frameRate(30);
 }
