@@ -1,4 +1,6 @@
-class Grass extends LivingCreature{
+var LivingCreature = require("./LivingCr.js");
+
+module.exports = class Grass extends LivingCreature{
     // constructor(x, y, index) {
     //     this.x = x;
     //     this.y = y;
@@ -29,9 +31,14 @@ class Grass extends LivingCreature{
     //     return found;
 
     // }
+    random(){
+        let found = this.chooseCell(0);
+        let result = Math.floor(Math.random()*found.length)
+        return found[result];
+    }
     mul() {
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = this.random(emptyCells);
 
         if (newCell && this.multiply >= 5) {
             var newX = newCell[0];

@@ -1,4 +1,4 @@
-class Bomb {
+module.exports = class Bomb {
     constructor(x, y){
         this.x = x;
         this.y = y;
@@ -12,6 +12,12 @@ class Bomb {
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
         ];
+    }
+
+    random(){
+        let found = this.chooseCell(0);
+        let result = Math.floor(Math.random()*found.length)
+        return found[result];
     }
 
     chooseCell(character) {
@@ -39,8 +45,8 @@ class Bomb {
     }
 
     explosion(){
-        const cells = random(this.chooseCell(1))
-        const cells2 = random(this.chooseCell(2))
+        const cells = this.random(this.chooseCell(1))
+        const cells2 = this.random(this.chooseCell(2))
 
         if(cells){
             console.log(cells);
