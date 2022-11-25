@@ -14,8 +14,8 @@ module.exports = class Bomb {
         ];
     }
 
-    random(){
-        let found = this.chooseCell(0);
+    random(ch){
+        let found = this.chooseCell(ch);
         let result = Math.floor(Math.random()*found.length)
         return found[result];
     }
@@ -45,8 +45,8 @@ module.exports = class Bomb {
     }
 
     explosion(){
-        const cells = this.random(this.chooseCell(1))
-        const cells2 = this.random(this.chooseCell(2))
+        const cells = this.random(1)
+        const cells2 = this.random(2)
 
         if(cells){
             console.log(cells);

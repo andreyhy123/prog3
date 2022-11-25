@@ -3,12 +3,12 @@ var LivingCreature = require('./LivingCr.js')
 module.exports = class Human extends LivingCreature{
     constructor(x, y, index) {
         super(x, y, index);
-        this.gender;
+        this.gender = Math.floor(Math.random());
         this.energy = 20;
     }
 
-    random(){
-        let found = this.chooseCell(0);
+    random(ch){
+        let found = this.chooseCell(ch);
         let result = Math.floor(Math.random()*found.length)
         return found[result];
     }
@@ -34,12 +34,12 @@ module.exports = class Human extends LivingCreature{
 
 
     eat() {
-        const newCell = this.random(this.chooseCell(1));
+        const newCell = this.random(1);
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
 
-            matrix[newY][newX] = 2;
+            matrix[newY][newX] = 5;
 
             matrix[this.y][this.x] = 0;
 
@@ -66,8 +66,8 @@ module.exports = class Human extends LivingCreature{
 
 
     move() {
-        var found = this.chooseCell(0);
-        var newCell = this.random(found);
+        
+        var newCell = this.random(0);
 
         if (newCell) {
             var newX = newCell[0];
@@ -92,8 +92,8 @@ module.exports = class Human extends LivingCreature{
 
 
     mul() {
-        var found = this.chooseCell(1);
-        var newCell = this.random(found);
+       
+        var newCell = this.random(1);
 
         if (newCell) {
             var newX = newCell[0];
@@ -101,7 +101,7 @@ module.exports = class Human extends LivingCreature{
             matrix[newY][newX] = 5;
 
 
-
+            
             var newHuman = new Human(newX, newY);
             humanArr.push(newHuman);
             this.energy = 10;

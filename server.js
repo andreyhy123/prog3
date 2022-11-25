@@ -8,15 +8,15 @@ app.use(express.static("."));
 app.get('/', function (req, res) {
     res.redirect('index.html');
  });
- grassArr = [];
- grassEaterArr = [];
-  bombArr = [];
-  humanArr = [];
-// var livingCr = require('./LivingCr.js');
+grassArr = [];
+grassEaterArr = [];
+bombArr = [];
+humanArr = [];
+var livingCr = require('./LivingCr.js');
 var Bomb = require('./bomb.js');
 var Grass = require('./grass.js');
 var GrassEater = require('./grassEater.js');
-// var Human = require('./human.js');
+var Human = require('./human.js');
 
 
 server.listen(3000);
@@ -53,9 +53,9 @@ function createObject(){
             if (matrix[i][j] == 3) {
                 bombArr.push(new Bomb(j, i, 1));
             }
-            // if (matrix[i][j] == 5) {
-            //     humanArr.push(new Human(j, i, 1));
-            // }
+            if (matrix[i][j] == 5) {
+                humanArr.push(new Human(j, i, 1));
+            }
 
         }
     }
@@ -74,17 +74,17 @@ function game(){
     for (let i = 0; i < bombArr.length; i++) {
         bombArr[i].explosion();
     }
-    // for (let i = 0; i < humanArr.length; i++) {
-    //     humanArr[i].eat();
-    // }
+    for (let i = 0; i < humanArr.length; i++) {
+        humanArr[i].eat();
+    }
     io.sockets.emit("send matrix", matrix);
-    io.socket.on('send mulNumber', this.mulNumb)
-    console.log(this.mulNumb)
+    // io.socket.on('send mulNumber', this.mulNumb)
+    // console.log(this.mulNumb)
 
     console.log("game()fdgdfgdfgdfgdgdfgdfgdf")
 }
 
-setInterval(game, 250);
+setInterval(game, 500);
 
 io.on('connection', function (socket) {
     createObject()

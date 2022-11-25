@@ -2,11 +2,15 @@ var LivingCreature = require("./LivingCr.js");
 
 module.exports = class Grass extends LivingCreature{
 
-    constructor(x, y, index) {
-        super()
-        this.mulNumb = 0;
-        this.socket = io();
-    }
+    // constructor(x, y, index) {   statiticsX
+    //     super()
+    //     this.mulNumb = 0;
+    //     this.socket = io();
+    // }
+
+
+
+
     // constructor(x, y, index) {
     //     this.x = x;
     //     this.y = y;
@@ -37,14 +41,14 @@ module.exports = class Grass extends LivingCreature{
     //     return found;
 
     // }
-    random(){
-        let found = this.chooseCell(0);
+    random(ch){
+        let found = this.chooseCell(ch);
         let result = Math.floor(Math.random()*found.length)
         return found[result];
     }
     mul() {
-        var emptyCells = this.chooseCell(0);
-        var newCell = this.random(emptyCells);
+        // var emptyCells = this.chooseCell(0);
+        var newCell = this.random(0);
 
         if (newCell && this.multiply >= 5) {
             var newX = newCell[0];
@@ -53,11 +57,12 @@ module.exports = class Grass extends LivingCreature{
 
             var newGrass = new Grass(newX, newY, 1);
             grassArr.push(newGrass);
-            this.mulNumb++;
+            // this.mulNumb++;
             // socket.on('send mulNumber', this.mulNumb)
-            io.sockets.emit('send mulNumber', this.mulNumb)
+            // io.sockets.emit('send mulNumber', this.mulNumb)
             this.multiply = 0;
         }
+        this.multiply++;
         
     }
 
