@@ -26,7 +26,7 @@ function draww(matrix) {
                 fill("black")
             }
             else if (matrix[y][x] == 5) {
-                fill("#3400f2")
+                fill("blue")
             }
             else {
                 fill("gray");

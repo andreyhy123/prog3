@@ -1,6 +1,12 @@
 var LivingCreature = require("./LivingCr.js");
 
 module.exports = class Grass extends LivingCreature{
+
+    constructor(x, y, index) {
+        super()
+        this.mulNumb = 0;
+        this.socket = io();
+    }
     // constructor(x, y, index) {
     //     this.x = x;
     //     this.y = y;
@@ -47,9 +53,12 @@ module.exports = class Grass extends LivingCreature{
 
             var newGrass = new Grass(newX, newY, 1);
             grassArr.push(newGrass);
+            this.mulNumb++;
+            // socket.on('send mulNumber', this.mulNumb)
+            io.sockets.emit('send mulNumber', this.mulNumb)
             this.multiply = 0;
         }
-        this.multiply++;
+        
     }
 
 }

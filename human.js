@@ -3,7 +3,7 @@ var LivingCreature = require('./LivingCr.js')
 module.exports = class Human extends LivingCreature{
     constructor(x, y, index) {
         super(x, y, index);
-        this.gender = Math.round(Math.random());
+        this.gender;
         this.energy = 20;
     }
 
@@ -33,7 +33,36 @@ module.exports = class Human extends LivingCreature{
 
 
 
+    eat() {
+        const newCell = this.random(this.chooseCell(1));
+        if (newCell) {
+            var newX = newCell[0];
+            var newY = newCell[1];
 
+            matrix[newY][newX] = 2;
+
+            matrix[this.y][this.x] = 0;
+
+            this.x = newX;
+            this.y = newY;
+            this.energy++;
+
+            for (var i in grassArr) {
+                if (newX == grassArr[i].x && newY == grassArr[i].y) {
+                    grassArr.splice(i, 1);
+                    break;
+                }
+            }
+
+            if (this.energy >= 30) {
+                this.mul()
+            }
+
+        }
+        else {
+            this.move()
+        }
+    }
 
 
     move() {

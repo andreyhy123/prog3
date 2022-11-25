@@ -52,6 +52,7 @@ module.exports = class GrassEater extends LivingCreature{
     eat() {
         const newCell = this.random(this.chooseCell(1));
         if (newCell) {
+            console.log("EAAAAAAAAAAAAAAAAAAAAAAAAAAAAT")
             var newX = newCell[0];
             var newY = newCell[1];
 
@@ -65,6 +66,7 @@ module.exports = class GrassEater extends LivingCreature{
 
             for (var i in grassArr) {
                 if (newX == grassArr[i].x && newY == grassArr[i].y) {
+                    console.log("FOOOOOOOOOOOOOOOOOOOOREEEEEEEEEEEEEEEAT")
                     grassArr.splice(i, 1);
                     break;
                 }
